@@ -1,0 +1,62 @@
+<!doctype html>
+<html lang="tr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex,nofollow">
+<meta name="theme-color" content="#0c0d12">
+<title>Giriş</title>
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='9' fill='%237b7bff'/%3E%3Cpath d='M9 12h14M9 20h14M14 8l-2 16M20 8l-2 16' stroke='white' stroke-width='2.4' stroke-linecap='round' fill='none'/%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap">
+<style>
+  :root { color-scheme: dark; }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0; min-height: 100vh; display: grid; place-items: center; padding: 16px;
+    background: #0c0d12; color: #e4e7ee;
+    font-family: "Inter", "Segoe UI", system-ui, -apple-system, Roboto, sans-serif;
+    -webkit-font-smoothing: antialiased;
+  }
+  form {
+    width: min(100%, 400px); background: #14161d; padding: 34px 32px 30px; border-radius: 20px;
+    border: 1px solid rgba(255,255,255,.07); box-shadow: 0 24px 70px rgba(0,0,0,.5);
+  }
+  .logo { width: 52px; height: 52px; border-radius: 16px; background: #7b7bff; display: grid; place-items: center; margin: 0 auto 18px; }
+  h1 { margin: 0 0 6px; font-size: 22px; font-weight: 600; text-align: center; color: #fff; }
+  p { margin: 0 0 24px; text-align: center; color: #8b92a5; font-size: 14.5px; }
+  label { display: block; font-size: 12.5px; font-weight: 600; color: #8b92a5; margin-bottom: 7px; }
+  input {
+    width: 100%; padding: 12px 14px; border: 1px solid rgba(255,255,255,.07); border-radius: 12px;
+    background: #0c0d12; color: #e4e7ee; font: inherit; font-size: 16px; outline: none;
+  }
+  input:focus { border-color: #7b7bff; }
+  button {
+    width: 100%; margin-top: 20px; padding: 12px; border: 0; border-radius: 12px;
+    background: #7b7bff; color: #fff; font: inherit; font-size: 15.5px; font-weight: 600; cursor: pointer;
+  }
+  button:hover { background: #6a6af0; }
+  button:focus-visible { outline: 2px solid #fff; outline-offset: 2px; }
+  .err { color: #ff5c6c; font-size: 13.5px; margin-top: 14px; text-align: center; min-height: 18px; }
+</style>
+</head>
+<body>
+<form method="post" action="/login">
+  <div class="logo">
+    <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.2" stroke-linecap="round"><path d="M4 9h16M4 15h16M10 3 8 21M16 3l-2 18"/></svg>
+  </div>
+  <h1>Tekrar hoş geldin</h1>
+  <p>Panele girmek için şifreni yaz.</p>
+  <label for="pw">Şifre</label>
+  <input id="pw" name="password" type="password" autocomplete="current-password" autofocus required>
+  <button type="submit">Giriş yap</button>
+  <div class="err" id="err"></div>
+</form>
+<script>
+  const e = new URLSearchParams(location.search).get('e');
+  if (e) document.getElementById('err').textContent =
+    e === 'beklet' ? 'Çok fazla deneme yaptın. 10 dakika sonra tekrar dene.' : 'Şifre yanlış.';
+</script>
+</body>
+</html>

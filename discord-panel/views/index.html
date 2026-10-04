@@ -1,0 +1,78 @@
+<!doctype html>
+<html lang="tr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex,nofollow">
+<meta name="theme-color" content="#0c0d12">
+<title>Panel</title>
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='9' fill='%237b7bff'/%3E%3Cpath d='M9 12h14M9 20h14M14 8l-2 16M20 8l-2 16' stroke='white' stroke-width='2.4' stroke-linecap='round' fill='none'/%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap">
+<link rel="stylesheet" href="/style.css">
+</head>
+<body>
+<div id="app">
+  <nav id="guilds" aria-label="Sunucular"></nav>
+
+  <aside id="sidebar" class="panel">
+    <header id="guildHeader">
+      <span id="guildName">Yükleniyor…</span>
+      <span class="hbtns">
+        <button id="btnAddChannel" class="icon-btn" title="Kanal ekle" aria-label="Kanal ekle" data-ic="plus"></button>
+        <button id="btnRoles" class="icon-btn" title="Roller" aria-label="Roller" data-ic="shield"></button>
+      </span>
+    </header>
+    <div id="channels"></div>
+
+    <div id="voicebar" hidden>
+      <div class="vinfo">
+        <span class="vdot"></span>
+        <div><b>Ses bağlı</b><small id="voiceName"></small></div>
+      </div>
+      <div class="meter" title="Mikrofon seviyesi"><i id="meterBar"></i></div>
+      <div class="vbtns">
+        <button id="btnMute" class="icon-btn" title="Mikrofonu kapat/aç" data-ic="mic"></button>
+        <button id="btnDeaf" class="icon-btn" title="Gelen sesi kapat/aç" data-ic="headphones"></button>
+        <button id="btnLeave" class="icon-btn danger" title="Sesten ayrıl" data-ic="phoneoff"></button>
+      </div>
+    </div>
+
+    <footer id="userbar">
+      <img id="botAvatar" alt="" title="Profilim">
+      <div class="uinfo"><b id="botName">Bot</b><small id="ramInfo">RAM: –</small></div>
+      <button id="btnCrypto" class="icon-btn" title="Mesaj şifreleme" aria-label="Mesaj şifreleme" data-ic="unlock"></button>
+      <form method="post" action="/logout"><button class="icon-btn" title="Çıkış yap" aria-label="Çıkış yap" data-ic="logout"></button></form>
+    </footer>
+  </aside>
+
+  <main id="chat" class="panel">
+    <header id="chatHeader">
+      <button id="btnMenu" class="icon-btn" aria-label="Menü" data-ic="menu"></button>
+      <span id="chatTitle">Bir kanal seç</span>
+      <button id="btnDmVoice" class="icon-btn" title="Özel ses odası aç (sesli görüş)" aria-label="Sesli görüş" data-ic="phone" hidden></button>
+      <button id="btnProfile" class="icon-btn" title="Profili gör" aria-label="Profili gör" data-ic="user" hidden></button>
+      <button id="btnMembers" class="icon-btn" title="Üyeler" aria-label="Üyeler" data-ic="users"></button>
+    </header>
+    <div id="messages" role="log" aria-live="polite"></div>
+    <form id="composer" autocomplete="off">
+      <span id="lockBadge" hidden title="Mesajlar şifreli gidiyor" data-ic="lock" data-size="16"></span>
+      <input id="msgInput" placeholder="Mesaj yaz" maxlength="1800" disabled>
+      <button type="submit" id="btnSend" class="icon-btn send" aria-label="Gönder" data-ic="send"></button>
+    </form>
+  </main>
+
+  <aside id="members" class="panel">
+    <input id="memberSearch" placeholder="Üye ara" aria-label="Üye ara">
+    <div id="memberList"></div>
+  </aside>
+</div>
+
+<div id="modal" hidden><div id="modalBox" role="dialog" aria-modal="true"></div></div>
+<div id="toast" role="status"></div>
+
+<script src="/socket.io/socket.io.js"></script>
+<script src="/app.js"></script>
+</body>
+</html>
