@@ -1,0 +1,68 @@
+<!doctype html>
+<html lang="tr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex,nofollow">
+<title>Panel</title>
+<link rel="stylesheet" href="/style.css">
+</head>
+<body>
+<div id="app">
+  <nav id="guilds" aria-label="Sunucular"></nav>
+
+  <aside id="sidebar">
+    <header id="guildHeader">
+      <span id="guildName">Yükleniyor…</span>
+      <span class="hbtns">
+        <button id="btnAddChannel" title="Kanal ekle" aria-label="Kanal ekle">＋</button>
+        <button id="btnRoles" title="Roller" aria-label="Roller">🎭</button>
+      </span>
+    </header>
+    <div id="channels"></div>
+
+    <div id="voicebar" hidden>
+      <div class="vinfo"><span class="vdot"></span><div><b>Ses bağlandı</b><small id="voiceName"></small></div></div>
+      <div class="vbtns">
+        <button id="btnMute" title="Mikrofonu kapat/aç">🎤</button>
+        <button id="btnDeaf" title="Sesi kapat/aç">🔊</button>
+        <button id="btnLeave" title="Ayrıl" class="danger">📞</button>
+      </div>
+    </div>
+
+    <footer id="userbar">
+      <img id="botAvatar" alt="">
+      <div class="uinfo"><b id="botName">Bot</b><small id="ramInfo">RAM: –</small></div>
+      <button id="btnCrypto" title="Şifreleme anahtarı" aria-label="Şifreleme anahtarı">🔓</button>
+      <form method="post" action="/logout"><button title="Çıkış yap" aria-label="Çıkış yap">⎋</button></form>
+    </footer>
+  </aside>
+
+  <main id="chat">
+    <header id="chatHeader">
+      <button id="btnMenu" aria-label="Menü">☰</button>
+      <span id="chatTitle">Bir kanal seç</span>
+      <button id="btnDmVoice" title="Özel ses odası aç (sesli görüş)" aria-label="Sesli görüş" hidden>📞</button>
+      <button id="btnProfile" title="Profili gör" aria-label="Profili gör" hidden>👤</button>
+      <button id="btnMembers" title="Üyeler" aria-label="Üyeler">👥</button>
+    </header>
+    <div id="messages" role="log" aria-live="polite"></div>
+    <form id="composer" autocomplete="off">
+      <span id="lockBadge" hidden title="Mesajlar şifreli gidiyor">🔒</span>
+      <input id="msgInput" placeholder="Mesaj yaz" maxlength="1800" disabled>
+    </form>
+  </main>
+
+  <aside id="members">
+    <input id="memberSearch" placeholder="Üye ara" aria-label="Üye ara">
+    <div id="memberList"></div>
+  </aside>
+</div>
+
+<div id="modal" hidden><div id="modalBox" role="dialog" aria-modal="true"></div></div>
+<div id="toast" role="status"></div>
+
+<script src="/socket.io/socket.io.js"></script>
+<script src="/app.js"></script>
+</body>
+</html>

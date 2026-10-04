@@ -1,0 +1,51 @@
+<!doctype html>
+<html lang="tr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex,nofollow">
+<title>Giriş</title>
+<style>
+  :root { color-scheme: dark; }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0; min-height: 100vh; display: grid; place-items: center;
+    background: #1e1f22; color: #dbdee1;
+    font-family: "gg sans", "Segoe UI", system-ui, -apple-system, Roboto, sans-serif;
+  }
+  form {
+    width: min(92vw, 400px); background: #313338; padding: 32px; border-radius: 6px;
+    box-shadow: 0 8px 30px rgba(0,0,0,.4);
+  }
+  h1 { margin: 0 0 6px; font-size: 24px; text-align: center; color: #f2f3f5; }
+  p { margin: 0 0 20px; text-align: center; color: #b5bac1; font-size: 15px; }
+  label { display: block; font-size: 12px; font-weight: 700; color: #b5bac1; margin-bottom: 8px; }
+  input {
+    width: 100%; padding: 11px 12px; border: 0; border-radius: 4px;
+    background: #1e1f22; color: #dbdee1; font-size: 16px; outline: none;
+  }
+  input:focus-visible { outline: 2px solid #5865f2; }
+  button {
+    width: 100%; margin-top: 20px; padding: 11px; border: 0; border-radius: 4px;
+    background: #5865f2; color: #fff; font-size: 16px; font-weight: 600; cursor: pointer;
+  }
+  button:hover { background: #4752c4; }
+  .err { color: #f23f42; font-size: 14px; margin-top: 12px; text-align: center; min-height: 18px; }
+</style>
+</head>
+<body>
+<form method="post" action="/login">
+  <h1>Tekrar hoş geldin</h1>
+  <p>Panele girmek için şifreni yaz.</p>
+  <label for="pw">ŞİFRE</label>
+  <input id="pw" name="password" type="password" autocomplete="current-password" autofocus required>
+  <button type="submit">Giriş yap</button>
+  <div class="err" id="err"></div>
+</form>
+<script>
+  const e = new URLSearchParams(location.search).get('e');
+  if (e) document.getElementById('err').textContent =
+    e === 'beklet' ? 'Çok fazla deneme yaptın. 10 dakika sonra tekrar dene.' : 'Şifre yanlış.';
+</script>
+</body>
+</html>
